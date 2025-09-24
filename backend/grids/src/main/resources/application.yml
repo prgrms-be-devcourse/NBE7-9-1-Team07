@@ -1,0 +1,29 @@
+server:
+  port: 8080 # 마음대로 설정
+
+spring:
+  profiles:
+    active: dev # 기본적으로 application-dev.yml을 보도록
+
+  datasource:
+    url: jdbc:h2:./db_dev;MODE=MySQL # DB 위치
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    properties: # -> 콘솔에 hibernate의 sql 로그를 좀 더 가독성 좋게 보여줌
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+
+
+    hibernate:
+      ddl-auto: update # create 또는 update <- DB 재생성 or 계속 사용
+    show-sql: true # 콘솔에 sql 로그를 보여주는 역할
+
+logging: # 로그에 정확한 값이 ?로 보이는 것들이 있는데 그에 대한 로그가 추가된다
+  level:
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.hibernate.orm.jdbc.extract: TRACE
