@@ -1,0 +1,1 @@
+export const GRIDS_CAFE = "Grids & Circle";
