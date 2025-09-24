@@ -12,10 +12,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class OrderItem extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id") // db에 만들 fk 칼럼 이름
     private Order order;

@@ -14,10 +14,6 @@ import java.util.List;
 @Entity
 public class Order extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String userEmail;
 
     private String userAddress;
