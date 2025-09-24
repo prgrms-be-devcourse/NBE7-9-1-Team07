@@ -1,0 +1,40 @@
+##주문 조회 API 명세서
+### 주문 조회
+- 제작해야할 API: orderInquiry
+- HTTP 메서드: GET
+- API Path: /orders?email={user@example.com}
+
+#### DTO TABLE
+- OrderInquiryRequest	
+``` Param
+{
+	email: string;
+}
+```
+
+- OrderInquiryResponse
+``` Body
+{
+  orderId: long;
+  orderDate: string;
+  orderStatus: string;
+  totalPrice: number;
+  shippingDetails: {
+    recipientEmail: string;
+    address: string;
+    postCode: string;
+  };
+  orderItems: [{
+	  itemId: long; 
+	  itemName: string;
+	  quantity: number;
+	  price: number;
+  }];
+}
+```
+
+
+### 개발 시 참고 사항
+- 단위기간은 전날 14시 ~ 당일 14시까지가 한 단위기간이다.
+- 구매한 목록들은 단위기간에 따라 분류하여 최신 단위기간의 주문 건이 가장 상단으로 오게 정렬한다. (대분류)
+- 그 단위기간 안의 주문 건들의 물건은, 상품 이름 오름차순(가나다순)으로 정렬한다.
