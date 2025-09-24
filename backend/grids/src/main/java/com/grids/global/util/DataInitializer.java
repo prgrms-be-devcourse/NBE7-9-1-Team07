@@ -28,7 +28,7 @@ public class DataInitializer implements CommandLineRunner {
         Item item3 = Item.builder().name("텀블러").price(12000L).category("굿즈").image("image_url_3").build();
         itemRepository.saveAll(Arrays.asList(item1, item2, item3));
 
-        Order order1 = Order.builder()
+        Order order1 = com.grids.domain.order.entity.Order.builder()
                 .userEmail("user@example.com")
                 .userAddress("서울시 강남구")
                 .userZipCode("12345")
@@ -39,15 +39,15 @@ public class DataInitializer implements CommandLineRunner {
         order1.addOrderItem(createOrderItem(item3, 1));
         orderRepository.save(order1);
 
-        Order order2 = Order.builder()
+        Order order2 = com.grids.domain.order.entity.Order.builder()
                 .userEmail("user@example.com")
-                .userAddress("서울시 akvh구")
+                .userAddress("서울시 마포구")
                 .userZipCode("54321")
                 .totalPrice(8000L)
                 .status("배송준비중")
                 .build();
         order2.addOrderItem(createOrderItem(item2, 1));
-        orderRepository.save(order1);
+        orderRepository.save(order2);
 
         Order order3 = Order.builder()
                 .userEmail("another@example.com")

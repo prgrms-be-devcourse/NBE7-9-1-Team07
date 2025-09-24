@@ -2,7 +2,7 @@
 ### 주문 조회
 - 제작해야할 API: orderInquiry
 - HTTP 메서드: GET
-- API Path: /orders?email={user@example.com}
+- API Path: /order?email={user@example.com}
 
 #### DTO TABLE
 - OrderInquiryRequest	

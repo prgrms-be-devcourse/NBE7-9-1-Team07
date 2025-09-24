@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
+@Table(name = "orders")
 public class Order extends BaseEntity {
 
     private String userEmail;
@@ -38,6 +39,6 @@ public class Order extends BaseEntity {
     // 테스트 데이터 생성을 위한 연관관계 편의 메서드
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
-        orderItem.setOrder(this);
+        orderItem.setOrders(this);
     }
 }

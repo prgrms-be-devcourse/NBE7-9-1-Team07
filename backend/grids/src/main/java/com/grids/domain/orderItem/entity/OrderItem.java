@@ -37,7 +37,7 @@ public class OrderItem extends BaseEntity {
 
 
     // 테스트 데이터 생성을 위한 연관관계 편의 메서드
-    public void setOrder(Order order) {
+    public void setOrders(Order order) {
         this.order = order;
     }
 }
