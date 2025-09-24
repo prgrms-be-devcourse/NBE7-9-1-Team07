@@ -38,3 +38,6 @@ out/
 ### Custom ###
 db_dev.mv.db
 db_dev.trace.db
+
+# Gradle temporary files
+**/*.lock
