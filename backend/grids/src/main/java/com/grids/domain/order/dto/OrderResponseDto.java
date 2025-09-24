@@ -1,42 +1,33 @@
 package com.grids.domain.order.dto;
 
-import lombok.AllArgsConstructor;
+import com.grids.domain.order.entity.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class OrderResponseDto {
 
     // 주문 자체 정보
     private Long orderId;
-    private String orderName;
-    private String orderStatus;
+    private String orderName; // 주문 시점
+    private String orderStatus; // 주문 상태
     private Long totalPrice;
-    private ShippingDetailsDto shippingDetails;
-    private List<OrderItemDto> orderItems;
+    private ShippingDetailsDto shippingDetails; // 구매자 정보 Dto
+    private List<OrderItemDto> orderItems; // 구매한 물건들
 
-    // 내부 Dto1: 구매자 정보
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class ShippingDetailsDto {
-        private String recipientEmail;
-        private String address;
-        private String postCode;
-    }
-
-    // 내부 Dto2: 구매한 물건들
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class OrderItemDto {
-        private Long itemId;
-        private String itemName;
-        private int quantity;
-        private Long price;
+    // 여기서 주문 내역 필드 매핑 시작
+    public OrderResponseDto(Order order) {
+        this.orderId = order.getId();
+        this.orderName = order.getCreatedAt().toString();
+        this.orderStatus = order.getStatus().toString();
+        this.totalPrice = order.getTotalPrice();
+        this.shippingDetails = new ShippingDetailsDto(order); // 구매자 정보
+        this.orderItems = order.getOrderItems().stream() // 구매한 물건들을 Dto로 다시 매핑
+                .map(OrderItemDto::new)
+                .collect(Collectors.toList());
     }
 }
