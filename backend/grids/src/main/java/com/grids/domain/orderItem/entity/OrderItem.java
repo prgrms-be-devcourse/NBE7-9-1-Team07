@@ -6,12 +6,17 @@ import com.grids.global.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
-@Getter
+@AllArgsConstructor
+@Getter @Setter
 @Entity
+@Builder
 public class OrderItem extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -23,4 +28,6 @@ public class OrderItem extends BaseEntity {
     private Long subTotalPrice;
 
     private int quantity;
+
+
 }
