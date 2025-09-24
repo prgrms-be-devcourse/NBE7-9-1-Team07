@@ -26,8 +26,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ backgroundColor: "oklch(87.1% 0.006 286.286)" }}
       >
-        {children}
+        <main className="justify-center items-center">
+          {children}
+        </main>
       </body>
     </html>
   );
