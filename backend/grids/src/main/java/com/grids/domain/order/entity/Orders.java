@@ -20,13 +20,13 @@ public class Orders extends BaseEntity {
     @OneToMany(mappedBy = "order", cascade = {jakarta.persistence.CascadeType.REMOVE, jakarta.persistence.CascadeType.PERSIST})
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    public String userEmail;
+    private String userEmail;
 
-    public String userAddress;
+    private String userAddress;
 
-    public String userZipCode;
+    private String userZipCode;
 
-    public String status;
+    private String status;
 
-    public Long totalPrice;
+    private Long totalPrice;
 }
