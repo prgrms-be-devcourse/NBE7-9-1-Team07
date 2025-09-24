@@ -1,7 +1,7 @@
 package com.grids.domain.orderItem.entity;
 
 import com.grids.domain.item.entity.Item;
-import com.grids.domain.order.entity.Order;
+import com.grids.domain.order.entity.Orders;
 import com.grids.global.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class OrderItem extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Order order;
+    private Orders order;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Item item;

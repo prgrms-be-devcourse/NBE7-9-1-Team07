@@ -1,0 +1,3 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:db_dev;MODE=MySQL # 메모리 사용 (테스트)
