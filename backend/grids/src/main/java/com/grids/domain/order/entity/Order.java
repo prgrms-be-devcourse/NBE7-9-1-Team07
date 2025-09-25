@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "orders")
-public class Orders extends BaseEntity {
+public class Order extends BaseEntity {
 
     @OneToMany(mappedBy = "order", cascade = {jakarta.persistence.CascadeType.REMOVE, jakarta.persistence.CascadeType.PERSIST})
     private List<OrderItem> orderItems = new ArrayList<>();
