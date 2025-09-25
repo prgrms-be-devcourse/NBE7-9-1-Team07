@@ -1,4 +1,4 @@
-package com.grids.domain.item.default_Item_List;
+package com.grids.domain.item.defaultItemList;
 
 import com.grids.domain.item.entity.Item;
 

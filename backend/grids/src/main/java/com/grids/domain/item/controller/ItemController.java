@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-//@Controller
-//@ResponseBody
 @RequiredArgsConstructor
 public class ItemController {
 

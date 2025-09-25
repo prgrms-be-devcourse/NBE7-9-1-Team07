@@ -1,6 +1,6 @@
 package com.grids.domain.item.service;
 
-import com.grids.domain.item.default_Item_List.DefaultItemList;
+import com.grids.domain.item.defaultItemList.DefaultItemList;
 import com.grids.domain.item.entity.Item;
 import com.grids.domain.item.repository.ItemRepository;
 import jakarta.annotation.PostConstruct;
