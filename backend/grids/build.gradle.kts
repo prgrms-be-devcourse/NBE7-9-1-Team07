@@ -33,6 +33,7 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito:mockito-inline")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
