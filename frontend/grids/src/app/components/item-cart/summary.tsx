@@ -4,13 +4,16 @@ import { useMemo, useState } from "react";
 import { ADDRESS, ADDRESS_TAG, EMAIL, EMAIL_TAG, INVALID_EMAIL, INVALID_ZIP_CODE, NOTE_MESSAGE, PAYMENT, QUANTITY_MINUS, QUANTITY_PLUS, TOTAL_PRICE, UNIT, WON, ZIP_CODE, ZIP_CODE_TAG } from "../../../constant";
 import { checkEmailValidation, checkZipCodeValidation } from "../../../util/string.util";
 import { SummaryItem } from "../../../type/item";
+import { useRouter } from "next/navigation";
 
 interface SummaryProps {
-    summaryItems: SummaryItem[];
-    setSummaryItems: React.Dispatch<React.SetStateAction<SummaryItem[]>>;
+    readonly summaryItems: SummaryItem[];
+    readonly setSummaryItems: React.Dispatch<React.SetStateAction<SummaryItem[]>>;
 }
 
 export default function Summary({ summaryItems, setSummaryItems }: SummaryProps) {
+
+    const router = useRouter();
 
     const [email, setEmail] = useState<string>("");
     const [emailError, setEmailError] = useState<string>("");
@@ -63,9 +66,11 @@ export default function Summary({ summaryItems, setSummaryItems }: SummaryProps)
         );
     };
 
-    //TODO: Need to implement
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        //TODO: Need to implement, fetch API
+        router.push(`/orders`);
     }
 
     return (
