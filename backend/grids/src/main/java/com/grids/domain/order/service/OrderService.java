@@ -28,6 +28,11 @@ public class OrderService {
                 .map(OrderResponseDto::new)
                 .collect(Collectors.toList());
 
+        return sortOrdersAsRequired(responseDtos);
+    }
+
+    // 책임 분리1: 정렬 메서드
+    private List<OrderResponseDto> sortOrdersAsRequired(List<OrderResponseDto> responseDtos) {
         // 각 주문 내의 상품 목록을 상품명 기준 오름차순 정렬
         responseDtos.forEach(dto -> dto.getOrderItems()
                 .sort(Comparator.comparing(OrderItemDto::getItemName)));
@@ -40,7 +45,7 @@ public class OrderService {
         return responseDtos;
     }
 
-    // 헬퍼 메서드
+    // 정렬 메서드를 위한 하위 헬퍼 메서드
     private LocalDateTime getUnitPeriodEndDate(LocalDateTime orderDateTime) {
 
         // 단위기간의 경계가 되는 시간(당일 14시)을 비교 기준 객체로 생성.
@@ -50,7 +55,6 @@ public class OrderService {
         if (!orderDateTime.isBefore(periodBoundary)) {
             return periodBoundary.plusDays(1);
         }
-
         // 주문 시간이 기준 시간보다 이전이라면, 당일 14시가 단위기간의 종료 시점
         else {
             return periodBoundary;
