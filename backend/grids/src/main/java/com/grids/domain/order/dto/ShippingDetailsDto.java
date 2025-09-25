@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ShippingDetailsDto {
-    private String recipientEmail;
+    private String email;
     private String address;
     private String postCode;
 
     public ShippingDetailsDto(Order order) {
-        this.recipientEmail = order.getUserEmail();
+        this.email = order.getUserEmail();
         this.address = order.getUserAddress();
         this.postCode = order.getUserZipCode();
     }
