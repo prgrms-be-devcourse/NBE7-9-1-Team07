@@ -5,7 +5,7 @@ import { ItemDto, SummaryItem } from "../../../type/item";
 import { ADD_ITEM, WON } from "../../../constant";
 
 interface ItemListProps {
-    setSummaryItems: React.Dispatch<React.SetStateAction<SummaryItem[]>>
+    readonly setSummaryItems: React.Dispatch<React.SetStateAction<SummaryItem[]>>;
 }
 
 export default function ItemList({ setSummaryItems }: ItemListProps) {
