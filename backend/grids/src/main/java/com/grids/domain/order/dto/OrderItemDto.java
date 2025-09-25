@@ -8,14 +8,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderItemDto {
     private Long itemId;
-    private String itemName;
-    private int quantity;
-    private Long price;
+    private Long orderItemId;
+    private String orderItemName;
+    private int orderQuantity;
+    private Long orderPrice;
 
     public OrderItemDto(OrderItem orderItem) {
         this.itemId = orderItem.getItem().getId();
-        this.itemName = orderItem.getItem().getName();
-        this.quantity = orderItem.getQuantity();
-        this.price = orderItem.getSubTotalPrice();
+        this.orderItemId = orderItem.getId();
+        this.orderItemName = orderItem.getItem().getName();
+        this.orderQuantity = orderItem.getQuantity();
+        this.orderPrice = orderItem.getSubTotalPrice();
     }
 }

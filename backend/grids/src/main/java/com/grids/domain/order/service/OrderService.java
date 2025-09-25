@@ -35,7 +35,7 @@ public class OrderService {
     private List<OrderResponseDto> sortOrdersAsRequired(List<OrderResponseDto> responseDtos) {
         // 각 주문 내의 상품 목록을 상품명 기준 오름차순 정렬
         responseDtos.forEach(dto -> dto.getOrderItems()
-                .sort(Comparator.comparing(OrderItemDto::getItemName)));
+                .sort(Comparator.comparing(OrderItemDto::getOrderItemName)));
 
         // 전체 주문 목록을 단위기간 기준 최신순 정렬
         responseDtos.sort(Comparator.comparing(
