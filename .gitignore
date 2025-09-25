@@ -1,12 +1,21 @@
-# Java class files
+# ### Java / IDE ###
 *.class
-
-# IntelliJ IDEA
+*.lock
 .idea/
+*.iml
 out/
 
-# Maven
+# ### Build Tools (Maven, Gradle) ###
 target/
-
-# Gradle
 build/
+tmp/
+
+# Gradle 
+.gradle/
+
+# ### Logs ###
+*.log
+
+# ### OS generated files ###
+.DS_Store
+Thumbs.db

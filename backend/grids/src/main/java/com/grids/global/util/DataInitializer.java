@@ -46,6 +46,7 @@ public class DataInitializer implements CommandLineRunner {
                 .totalPrice(8000L)
                 .status("배송준비중")
                 .build();
+        order2.addOrderItem(createOrderItem(item1, 3));
         order2.addOrderItem(createOrderItem(item2, 1));
         orderRepository.save(order2);
 
