@@ -44,7 +44,7 @@ public class OrderItemController {
         orderItemService.removeByOrderItemIds(orderItemIds);
 
         CancelOrderResponse cancelOrderResponse = new CancelOrderResponse();
-        cancelOrderResponse.setOrderIds(orderItemIds);
+        cancelOrderResponse.setOrderItemIds(orderItemIds);
 
         return cancelOrderResponse;
     }
