@@ -1,13 +1,3 @@
-//package com.grids.domain.order.controller;
-//
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Controller;
-//
-//@Controller
-//@RequiredArgsConstructor
-//public class OrderController {
-//
-//}
 package com.grids.domain.order.controller;
 
 import com.grids.domain.order.dto.OrderRequestDto;

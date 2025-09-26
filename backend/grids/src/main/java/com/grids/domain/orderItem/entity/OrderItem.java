@@ -6,12 +6,16 @@ import com.grids.global.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @Entity
 @Builder
 public class OrderItem extends BaseEntity {
@@ -24,5 +28,7 @@ public class OrderItem extends BaseEntity {
 
     private Long subTotalPrice;
 
-    public int quantity;
+    private int quantity;
+
+
 }
