@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ItemDto, SummaryItem } from "../../../type/item";
 import { ADD_ITEM, WON } from "../../../constant";
+import { itemService } from "../../../service";
 
 interface ItemListProps {
     readonly setSummaryItems: React.Dispatch<React.SetStateAction<SummaryItem[]>>;
@@ -11,23 +12,13 @@ interface ItemListProps {
 export default function ItemList({ setSummaryItems }: ItemListProps) {
     const [ items, setItems ] = useState<ItemDto[]>([]);
 
-    //TODO: fetch data
     useEffect(() => {
-        setItems([{
-            id: 1,
-            name: "커피",
-            category: "음료",
-            price: 1000,
-            image: "https://i.postimg.cc/05L7tfJr/Kakao-Talk-Photo-2025-09-10-16-13-04.png",
-        },
-        {
-            id: 2,
-            name: "top커피",
-            category: "음료",
-            price: 2000,
-            image: "https://i.postimg.cc/05L7tfJr/Kakao-Talk-Photo-2025-09-10-16-13-04.png",
+        const fetchItems = async () => {
+            const data = await itemService.getItems();
+            setItems(data);
         }
-    ]);
+
+        fetchItems();
     }, []);
 
     const handleAddItemToCart = (item: ItemDto) => {
