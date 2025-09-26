@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderRequestDto {
     private String email;
-    private List<OrderItemRequestDto> items;
+    private List<OrderItemRequestDto> orderItems;
     private String userAddress;
     private String userZipCode;
 

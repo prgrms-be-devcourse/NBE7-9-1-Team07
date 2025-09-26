@@ -19,7 +19,7 @@ public class OrderMerger {
         System.out.println("기존 주문을 찾았습니다. 주문 ID: " + existingOrder.getId() + " (OrderMerger)");
 
         long newItemsTotalPrice = 0;
-        for (OrderItemRequestDto itemRequest : requestDto.getItems()) {
+        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
             Item item = findItemById(itemRequest.getItemId());
             long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
             newItemsTotalPrice += subTotalPrice;

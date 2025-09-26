@@ -7,10 +7,11 @@ import com.grids.domain.order.entity.Order;
 import com.grids.domain.order.repository.OrderRepository;
 import com.grids.domain.orderItem.dto.OrderItemRequestDto;
 import com.grids.domain.orderItem.entity.OrderItem;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class OrderCreator {
         List<OrderItem> newOrderItems = new ArrayList<>();
         long totalNewPrice = 0;
 
-        for (OrderItemRequestDto itemRequest : requestDto.getItems()) {
+        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
             Item item = findItemById(itemRequest.getItemId());
             long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
             totalNewPrice += subTotalPrice;
