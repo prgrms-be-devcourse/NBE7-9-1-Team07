@@ -3,6 +3,9 @@ package com.grids.domain.item;
 import com.grids.domain.item.dto.ItemCreateRequestDto;
 import com.grids.domain.item.entity.Item;
 import com.grids.domain.item.repository.ItemRepository;
+
+import com.grids.domain.item.service.ItemService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -39,8 +42,9 @@ class ItemServiceTest {
 
 
     @ParameterizedTest
+    @DisplayName("다양한 상품을 성공적으로 등록")
     @MethodSource("itemCreationProvider") // 위에서 만든 데이터 제공 메서드를 지정
-    void 상품을성공적으로등록(String name, Long price, String category, String image) {
+    void createMultipleItems_Success(String name, Long price, String category, String image) {
         // given (주어진 상황)
         ItemCreateRequestDto requestDto = ItemCreateRequestDto.builder()
                 .name(name)
