@@ -39,3 +39,27 @@ export type SelectableOrder = {
     orderItems: SelectableOrderItem[];
     selected: boolean;
 };
+
+export type CreateOrderRequest = {
+    email: string;
+    items: {
+        itemId: number;
+        quantity: number;
+    }[],
+}
+
+export type CreateOrderResponse = {
+    orderId: number;
+    message: string;
+    totalPrice: number;
+}
+
+export type CancelOrderItemRequest = {
+    orderItemIds: number[];
+}
+
+export type CancelOrderItemResponse = {
+    orderIds: number[];
+    status: string;
+    message: string;
+}

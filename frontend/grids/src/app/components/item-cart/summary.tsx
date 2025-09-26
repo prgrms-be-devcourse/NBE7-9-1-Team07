@@ -5,6 +5,8 @@ import { ADDRESS, ADDRESS_TAG, EMAIL, EMAIL_TAG, INVALID_EMAIL, INVALID_ZIP_CODE
 import { checkEmailValidation, checkZipCodeValidation } from "../../../util/string.util";
 import { SummaryItem } from "../../../type/item";
 import { useRouter } from "next/navigation";
+import { orderService } from "../../../service";
+import { useEmail } from "../../../context";
 
 interface SummaryProps {
     readonly summaryItems: SummaryItem[];
@@ -12,14 +14,14 @@ interface SummaryProps {
 }
 
 export default function Summary({ summaryItems, setSummaryItems }: SummaryProps) {
-
     const router = useRouter();
 
-    const [email, setEmail] = useState<string>("");
-    const [emailError, setEmailError] = useState<string>("");
-    const [address, setAddress] = useState<string>("");
-    const [zipCode, setZipCode] = useState<string>("");
-    const [zipCodeError, setZipCodeError] = useState<string>("");
+    const { email, setEmail } = useEmail();
+    const [ emailError, setEmailError ] = useState<string>("");
+    const [ address, setAddress ] = useState<string>("");
+    const [ zipCode, setZipCode ] = useState<string>("");
+    const [ zipCodeError, setZipCodeError ] = useState<string>("");
+
     const totalPrice = useMemo(() => {
         return summaryItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
       }, [summaryItems]);
@@ -66,11 +68,22 @@ export default function Summary({ summaryItems, setSummaryItems }: SummaryProps)
         );
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        //TODO: Need to implement, fetch API
-        router.push(`/orders`);
+        try {
+            await orderService.createOrder({
+                email,
+                items: summaryItems.map((item) => ({
+                    itemId: item.id,
+                    quantity: item.quantity,
+                })),
+            });
+        
+            router.push(`/orders`);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

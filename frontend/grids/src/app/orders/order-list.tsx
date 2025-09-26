@@ -2,73 +2,25 @@
 
 import { useEffect, useState } from "react";
 import { CANCEL, CANCEL_ORDER_ERROR_ALERT, EMPTY_ORDER_HISTORY, NOTHING_SELECTED_ALERT, SELECT_ALL, WON } from "../../constant";
-import { OrderHistoryResponseDto, SelectableOrder } from "../../type/order";
+import { SelectableOrder } from "../../type/order";
 import CheckBox from "../components/checkbox";
 import { mapToSelectableOrders } from "../../util/rest.util";
+import { orderItemService, orderService } from "../../service";
+import { useEmail } from "../../context";
 
 export default function OrderList () {
 
-    // TODO: fetch data - get order history API
-    const originOrders: OrderHistoryResponseDto[] = [
-        {
-            orderId: 1,
-            orderDate: "2025.09.23",
-            orderStatus: "",
-            totalPrice: 15000,
-            shippingDetails: {
-                email: "test@aa.com",
-                address: "address",
-                postCode: "01234",
-            },
-            orderItems: [{
-                    itemId: 1,
-                    orderItemId: 1,
-                    itemName: "name1",
-                    quantity: 2,
-                    price: 5000,
-                },
-                {
-                    itemId: 2,
-                    orderItemId: 2,
-                    itemName: "name2",
-                    quantity: 2,
-                    price: 3000,
-                },
-            ],
-        },
-        {
-            orderId: 2,
-            orderDate: "2025.09.21",
-            orderStatus: "",
-            totalPrice: 13000,
-            shippingDetails: {
-                email: "test@aa.com",
-                address: "address",
-                postCode: "01234",
-            },
-            orderItems: [{
-                    itemId: 1,
-                    orderItemId: 3,
-                    itemName: "name1",
-                    quantity: 2,
-                    price: 5000,
-                },
-                {
-                    itemId: 4,
-                    orderItemId: 4,
-                    itemName: "name3",
-                    quantity: 1,
-                    price: 8000,
-                },
-            ]
-        }
-    ];
+    const { email } = useEmail();
 
     const [ orders, setOrders ] = useState<SelectableOrder[]>([]);
 
     useEffect(() => {
-        // TODO: fetch data - get order history API
-        setOrders(mapToSelectableOrders(originOrders));
+        const fetchItems = async () => {
+            const originOrders = await orderService.getOrders(email);
+            setOrders(mapToSelectableOrders(originOrders));
+        }
+
+        fetchItems();
     }, []);
 
     const onOrderChange = (orderId: number) => {
@@ -125,9 +77,9 @@ export default function OrderList () {
         }
         
         try {
-            // TODO: fetch API - cancel order API
-            console.log(selectedIds);
-            
+            await orderItemService.cancelOrderItem({
+                orderItemIds: selectedIds
+            });
         
             setOrders((prev) =>
                 prev.map((order) => ({
