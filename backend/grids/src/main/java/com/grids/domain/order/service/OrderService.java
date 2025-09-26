@@ -8,8 +8,8 @@ import com.grids.domain.order.dto.OrderRequestDto;
 import com.grids.domain.order.dto.OrderResponseDto;
 import com.grids.domain.order.entity.Order;
 import com.grids.domain.order.repository.OrderRepository;
-import com.grids.domain.orderItem.dto.OrderItemRequestDto;
 import com.grids.domain.orderItem.entity.OrderItem;
+import com.grids.domain.orderItem.dto.OrderItemRequestDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +61,7 @@ public class OrderService {
         List<OrderItem> newOrderItems = new ArrayList<>();
         long totalNewPrice = 0;
 
-        for (OrderItemRequestDto itemRequest : requestDto.getItems()) {
+        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
             Item item = findItemById(itemRequest.getItemId());
             long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
             totalNewPrice += subTotalPrice;
@@ -93,7 +93,7 @@ public class OrderService {
         System.out.println("기존 주문을 찾았습니다. 주문 ID: " + existingOrder.getId() + " (OrderMerger)");
 
         long newItemsTotalPrice = 0;
-        for (OrderItemRequestDto itemRequest : requestDto.getItems()) {
+        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
             Item item = findItemById(itemRequest.getItemId());
             long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
             newItemsTotalPrice += subTotalPrice;
