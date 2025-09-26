@@ -55,6 +55,7 @@ public class OrderService {
         return new OrderResponseDto(finalOrder.getId(), finalOrder.getStatus(), finalOrder.getTotalPrice());
     }
 
+    //신규주문
     public Order createNewOrder(OrderRequestDto requestDto) {
         System.out.println("기존 주문이 없어 새로 생성합니다. (OrderCreator)");
 
@@ -89,6 +90,7 @@ public class OrderService {
         return orderRepository.save(newOrder);
     }
 
+    //기존주문병합
     public Order mergeIntoExistingOrder(Order existingOrder, OrderRequestDto requestDto) {
         System.out.println("기존 주문을 찾았습니다. 주문 ID: " + existingOrder.getId() + " (OrderMerger)");
 
