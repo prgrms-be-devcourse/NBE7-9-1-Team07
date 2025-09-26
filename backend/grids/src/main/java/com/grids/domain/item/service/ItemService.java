@@ -1,4 +1,4 @@
-package com.grids.domain.item;
+package com.grids.domain.item.service;
 
 import com.grids.domain.item.dto.ItemCreateRequestDto;
 import com.grids.domain.item.entity.Item;

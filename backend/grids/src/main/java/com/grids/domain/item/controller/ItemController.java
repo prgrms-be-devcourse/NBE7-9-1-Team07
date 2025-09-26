@@ -1,7 +1,8 @@
-package com.grids.domain.item;
+package com.grids.domain.item.controller;
 
 import com.grids.domain.item.dto.ItemCreateRequestDto;
 import com.grids.domain.item.dto.ItemCreateResponseDto;
+import com.grids.domain.item.service.ItemService;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
