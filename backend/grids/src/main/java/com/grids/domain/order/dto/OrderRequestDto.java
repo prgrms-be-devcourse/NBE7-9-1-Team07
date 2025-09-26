@@ -1,6 +1,6 @@
 package com.grids.domain.order.dto;
 
-import com.grids.domain.orderItem.OrderItemRequestDto;
+import com.grids.domain.orderItem.dto.OrderItemRequestDto;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
