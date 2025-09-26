@@ -46,7 +46,7 @@ class OrderServiceTest {
     private static final String NON_EXISTENT_EMAIL = "nonexistent@example.com";
 
     @Test
-    @DisplayName("이메일로 주문 내역을 조회하면, 해당 주문 목록을 최신순 및 정렬 요구사항에 맞게 반환한다.")
+    @DisplayName("이메일로 주문 내역을 조회하면, 해당 주문 목록을 최신순 및 정렬 요구사항에 맞게 반환")
     void findOrdersByEmail_Success() throws ReflectiveOperationException {
         // given
         Item coffeeBean = createItem("커피콩 원두", 5000L);
@@ -108,7 +108,7 @@ class OrderServiceTest {
     }
 
     @Test
-    @DisplayName("주문 내역이 없는 이메일로 조회하면, 빈 배열을 반환한다.")
+    @DisplayName("주문 내역이 없는 이메일로 조회하면, 빈 배열을 반환")
     void findOrdersByEmail_Empty() {
         // given
         when(orderRepository.findByUserEmailOrderByCreatedAtDesc(NON_EXISTENT_EMAIL)).thenReturn(Collections.emptyList());
