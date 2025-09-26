@@ -22,4 +22,12 @@ public class Item extends BaseEntity {
 
     private String image;
 
+
+    public Item(String name, Long price, String category, String image) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.image = image;
+    }
 }
+

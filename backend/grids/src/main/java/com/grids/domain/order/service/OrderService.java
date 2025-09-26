@@ -66,7 +66,7 @@ public class OrderService {
         List<OrderItem> newOrderItems = new ArrayList<>();
         long totalNewPrice = 0;
 
-        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
+        for (OrderItemRequestDto itemRequest : requestDto.getItems()) {
             Item item = findItemById(itemRequest.getItemId());
             long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
             totalNewPrice += subTotalPrice;
@@ -98,7 +98,7 @@ public class OrderService {
         System.out.println("기존 주문을 찾았습니다. 주문 ID: " + existingOrder.getId() + " (OrderMerger)");
 
         long newItemsTotalPrice = 0;
-        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
+        for (OrderItemRequestDto itemRequest : requestDto.getItems()) {
             Item item = findItemById(itemRequest.getItemId());
             long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
             newItemsTotalPrice += subTotalPrice;
