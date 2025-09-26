@@ -1,6 +1,6 @@
 package com.grids.domain.orderItem.controller;
 
-import com.grids.domain.orderItem.dto.CancelOrderResponse;
+import com.grids.domain.orderItem.dto.CancelOrderItemResponse;
 import com.grids.domain.orderItem.service.OrderItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -37,13 +37,13 @@ public class OrderItemController {
 
     @DeleteMapping("/orderItems")
     @ResponseBody
-    public CancelOrderResponse cancelOrderItems(
+    public CancelOrderItemResponse cancelOrderItems(
             @RequestParam("id") List<Long> orderItemIds
     ) {
         System.out.println("Cancelling orderItemIds: " + orderItemIds);
         orderItemService.removeByOrderItemIds(orderItemIds);
 
-        CancelOrderResponse cancelOrderResponse = new CancelOrderResponse();
+        CancelOrderItemResponse cancelOrderResponse = new CancelOrderItemResponse();
         cancelOrderResponse.setOrderItemIds(orderItemIds);
 
         return cancelOrderResponse;
