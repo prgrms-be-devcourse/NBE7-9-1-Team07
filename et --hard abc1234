@@ -1,0 +1,27 @@
+[33m4776ea6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeat/orderInquiry[m[33m, [m[1;31morigin/feat/orderInquiry[m[33m)[m BE/chore: 테스트 케이스 중 하드코딩된 부분들 동적으로 수정
+[33m1b229bd[m BE/feat: 테스트 케이스 추가. DataInitailizer 는 중복되므로 삭제
+[33maf36717[m BE/refactor: 혼동 방지를 위해 OrderItemDto 각 필드명에 order 접두사 붙임, orderItemId 필드 생성
+[33m154a133[m refactor: .giBE/tignore 적용 및 불필요한 파일 추적 해제
+[33m2678c58[m BE/chore: remove IDE/build artifacts from version control
+[33m083bedf[m Merge branch 'main' of https://github.com/prgrms-be-devcourse/NBE7-9-1-Team07 into feat/orderInquiry
+[33m6c1ebbb[m Remove unnecessary files
+[33mb63c8ba[m BE/refactor: findOrdersByEmail 메서드에 대한 책임 분리. 정렬은 sortOrdersAsRequired에서.
+[33m88f612e[m BE/feat: 주문 목록을 단위기간 기준 최신순 정렬, 상품 목록을 상품명 기준 오름차순 정렬 구현
+[33m1c7890b[m FE/feat: implement main page
+[33m38b9c72[m BE/chore: ShippingDetailsDto의 필드명 변경(recipientEmail -> email)
+[33mafcc945[m Merge branch 'feat/orderInquiry' of https://github.com/prgrms-be-devcourse/NBE7-9-1-Team07 into feat/orderInquiry
+[33m479eaa6[m BE/refactor: DTO 변환 로직을 Service에서 DTO로 이동
+[33m562104c[m BE/fix: Remove .class files from repository
+[33m1403995[m ãBE/fixRemove .class files from repository
+[33m6749557[m BE/feat: Controller 구현, Order Entity에 임시로 table 어노테이션 붙임
+[33m8c631bc[m BE/feat: 테스트 데이터 생성을 위해 DataInitializer 클래스 생성, 임시로 builder 패턴 구현
+[33m4fa4873[m BE/feat: 주문내역 조회 비즈니스 로직 구현
+[33mad73ec2[m BE/feat: OrderRepository에 userEmail 기준 최신 주문 조회 기능 추가
+[33m1664ea1[m BE/feat: created OrderResponseDto, 각 Entity에서 id 필드 다시 제거(BaseEntity가 있는 걸 봄)
+[33mbff0591[m[33m ([m[1;31morigin/BE_feat#3-주문내역조회[m[33m)[m BE/feat: application.properties를 yml로 변경, h2 콘솔 실행을 위한 기초 세팅
+[33m55dcbac[m BE/feat: Order, Item, OrderItem Entity에 PK 부여 및 관ê핅필드 수정
+[33m4f06a78[m[33m ([m[1;31morigin/FE_feat#102/order-history[m[33m)[m FE/init: initialize fe
+[33m6b3d656[m init: add entities
+[33mb55307c[m docs: Update issue templates
+[33m88d6380[m add frontend directory
+[33m29896e0[m Initialize project structure with backend and frontend folders
