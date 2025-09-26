@@ -37,11 +37,6 @@ class OrderServiceTest {
     @Mock
     private OrderRepository orderRepository;
 
-    @Mock
-    private OrderCreator orderCreator;
-
-    @Mock
-    private OrderMerger orderMerger;
 
     @Test
     @DisplayName("기존 주문이 없을 시, 새로운 주문을 생성")
@@ -61,7 +56,7 @@ class OrderServiceTest {
                 .thenReturn(Optional.empty());
 
         // given: OrderCreator는 위에서 만든 newOrder Stub을 반환하도록 설정
-        when(orderCreator.createNewOrder(requestDto)).thenReturn(newOrder);
+        when(orderService.createNewOrder(requestDto)).thenReturn(newOrder);
 
         // when: 주문 생성 서비스 실행
         OrderResponseDto responseDto = orderService.createOrder(requestDto);
@@ -72,8 +67,8 @@ class OrderServiceTest {
         assertThat(responseDto.getTotalPrice()).isEqualTo(30000L);
 
         // then: 의존 객체들의 호출 여부 검증
-        verify(orderCreator, times(1)).createNewOrder(requestDto);
-        verify(orderMerger, never()).mergeIntoExistingOrder(any(), any());
+        verify(orderService, times(1)).createNewOrder(requestDto);
+        verify(orderService, never()).mergeIntoExistingOrder(any(), any());
     }
 
     @Test
@@ -97,7 +92,7 @@ class OrderServiceTest {
                 .thenReturn(Optional.of(existingOrder));
 
         // given: OrderMerger는 mergedOrder Stub을 반환하도록 설정
-        when(orderMerger.mergeIntoExistingOrder(existingOrder, requestDto)).thenReturn(mergedOrder);
+        when(orderService.mergeIntoExistingOrder(existingOrder, requestDto)).thenReturn(mergedOrder);
 
         // when: 주문 생성 서비스 실행
         OrderResponseDto responseDto = orderService.createOrder(requestDto);
@@ -108,8 +103,8 @@ class OrderServiceTest {
         assertThat(responseDto.getTotalPrice()).isEqualTo(80000L);
 
         // then
-        verify(orderMerger, times(1)).mergeIntoExistingOrder(existingOrder, requestDto);
-        verify(orderCreator, never()).createNewOrder(any());
+        verify(orderService, times(1)).mergeIntoExistingOrder(existingOrder, requestDto);
+        verify(orderService, never()).createNewOrder(any());
     }
 
     @Test
@@ -133,7 +128,7 @@ class OrderServiceTest {
                 .thenReturn(Optional.empty());
 
         // given: 따라서 OrderCreator가 호출될 것이며, newOrder Stub을 반환하도록 설정
-        when(orderCreator.createNewOrder(requestDto)).thenReturn(newOrder);
+        when(orderService.createNewOrder(requestDto)).thenReturn(newOrder);
 
         // when: 주문 생성 서비스 실행
         OrderResponseDto responseDto = orderService.createOrder(requestDto);
@@ -144,8 +139,8 @@ class OrderServiceTest {
         assertThat(responseDto.getOrderId()).isNotEqualTo(99L); // 기존 주문 ID가 아니어야 함
 
         // then: Merger가 아닌 Creator가 호출되었는지 검증
-        verify(orderCreator, times(1)).createNewOrder(requestDto);
-        verify(orderMerger, never()).mergeIntoExistingOrder(any(), any());
+        verify(orderService, times(1)).createNewOrder(requestDto);
+        verify(orderService, never()).mergeIntoExistingOrder(any(), any());
     }
 
 }
