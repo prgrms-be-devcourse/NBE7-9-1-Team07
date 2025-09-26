@@ -1,17 +1,65 @@
 package com.grids.domain.order.helper;
 
 import com.grids.domain.order.dto.OrderRequestDto;
-import com.grids.domain.order.entity.Order;
 import com.grids.domain.orderItem.dto.OrderItemRequestDto;
+import com.grids.domain.item.entity.Item;
+import com.grids.domain.order.entity.Order;
+import com.grids.domain.orderItem.entity.OrderItem;
 
 import java.lang.reflect.Field;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * Order 관련 테스트에서 공통으로 사용할 객체 생성 및 유틸리티 메서드를 제공하는 헬퍼 클래스입니다.
- * 모든 메서드는 static으로 선언되어 객체 생성 없이 바로 사용할 수 있습니다.
- */
-public class OrderTestHelper {
+public final class OrderTestHelper {
+
+    private OrderTestHelper() {
+    }
+
+    public static Item createItem(String name, Long price) {
+        return Item.builder()
+                .name(name)
+                .price(price)
+                .category("테스트 카테고리")
+                .image("test_image.jpg")
+                .build();
+    }
+
+    public static OrderItem createOrderItem(Item item, int quantity) {
+        return OrderItem.builder()
+                .item(item)
+                .quantity(quantity)
+                .subTotalPrice(item.getPrice() * quantity)
+                .build();
+    }
+
+    public static Order createOrder(String userEmail, String userAddress, String userZipCode, OrderItem... orderItems) {
+        long totalAmount = Arrays.stream(orderItems)
+                .mapToLong(OrderItem::getSubTotalPrice)
+                .sum();
+
+        List<OrderItem> items = new ArrayList<>(Arrays.asList(orderItems));
+
+        Order order = Order.builder()
+                .userEmail(userEmail)
+                .userAddress(userAddress)
+                .userZipCode(userZipCode)
+                .status("배송준비중")
+                .totalPrice(totalAmount)
+                .orderItems(items)
+                .build();
+
+        items.forEach(orderItem -> orderItem.setOrder(order));
+
+        return order;
+    }
+
+
+    /**
+     * Order 관련 테스트에서 공통으로 사용할 객체 생성 및 유틸리티 메서드를 제공하는 헬퍼 클래스입니다.
+     * 모든 메서드는 static으로 선언되어 객체 생성 없이 바로 사용할 수 있습니다.
+     */
 
     // 표준 테스트용 DTO를 생성합니다.
     public static OrderRequestDto createOrderRequestDto() {
@@ -23,7 +71,7 @@ public class OrderTestHelper {
                 .email("test@example.com")
                 .userAddress("서울시 강남구")
                 .userZipCode("12345")
-                .items(items)
+                .orderItems(items)
                 .build();
     }
 
