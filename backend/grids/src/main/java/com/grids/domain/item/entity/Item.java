@@ -3,11 +3,13 @@ package com.grids.domain.item.entity;
 import com.grids.domain.item.dto.ItemListDto;
 import com.grids.global.entity.BaseEntity;
 import jakarta.persistence.Entity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
+@Builder
 @Entity
 public class Item extends BaseEntity {
 
