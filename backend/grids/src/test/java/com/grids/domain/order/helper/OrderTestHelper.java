@@ -23,7 +23,7 @@ public class OrderTestHelper {
                 .email("test@example.com")
                 .userAddress("서울시 강남구")
                 .userZipCode("12345")
-                .items(items)
+                .orderItems(items)
                 .build();
     }
 
