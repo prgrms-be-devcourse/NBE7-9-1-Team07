@@ -19,14 +19,14 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
+    public List<Item> findAll() {
+        return itemRepository.findAll();
+    }
+
     //기본 상품 4가지 등록
     @PostConstruct// 이 어노테이션이 붙은 메서드는 빈 생성 후 자동 실행
     public void registerDefaultItems() {
         itemRepository.saveAll(defaultItems);
-    }
-
-    public List<Item> getItems() {
-        return itemRepository.findAll();
     }
 
 }

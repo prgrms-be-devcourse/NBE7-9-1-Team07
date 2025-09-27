@@ -1,5 +1,6 @@
 package com.grids.domain.item.entity;
 
+import com.grids.domain.item.dto.ItemListDto;
 import com.grids.global.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.Getter;
@@ -23,5 +24,15 @@ public class Item extends BaseEntity {
         this.price = price;
         this.category = category;
         this.image = image;
+    }
+
+    public ItemListDto toDto(){
+        return new ItemListDto(
+                this.getId(),
+                this.getName(),
+                this.getCategory(),
+                this.getPrice(),
+                this.getImage()
+        );
     }
 }
