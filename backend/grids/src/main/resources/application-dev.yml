@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: demo
+
+  datasource:
+    url: jdbc:h2:./db_dev;MODE=MySQL # DB 위치
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
