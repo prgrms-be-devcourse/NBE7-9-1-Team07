@@ -3,7 +3,6 @@ package com.grids.domain.item.entity;
 import com.grids.domain.item.dto.ItemInfoUpdateRequestDto;
 import com.grids.global.entity.BaseEntity;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,6 @@ import lombok.NoArgsConstructor;
 import java.util.Optional;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Builder
 @Entity
@@ -24,6 +22,13 @@ public class Item extends BaseEntity {
     private String category;
 
     private String image;
+
+    public Item(String name, Long price, String category, String image) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.image = image;
+    }
 
     public void update(ItemInfoUpdateRequestDto requestDto) {
         Optional.ofNullable(requestDto.getName()).ifPresent(name -> this.name = name);
