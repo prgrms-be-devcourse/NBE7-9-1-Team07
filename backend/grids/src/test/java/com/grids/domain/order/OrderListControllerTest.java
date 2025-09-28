@@ -25,7 +25,7 @@ public class OrderListControllerTest {
 
     @Test
     @DisplayName("상품 조회")
-    void t1() throws Exception {
+    void getItemListTest() throws Exception {
 
         ResultActions resultActions = mvc
                 .perform(
