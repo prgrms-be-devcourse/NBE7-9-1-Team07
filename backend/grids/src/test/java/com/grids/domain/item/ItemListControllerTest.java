@@ -1,4 +1,4 @@
-package com.grids.domain.order;
+package com.grids.domain.item;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
