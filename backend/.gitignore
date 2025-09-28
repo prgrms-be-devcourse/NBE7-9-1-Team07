@@ -38,13 +38,6 @@ out/
 ### Custom ###
 db_dev.mv.db
 db_dev.trace.db
-/grids/.gradle
-/grids/build
-/grids/gradle
-/grids/build.gradle.kts
-/grids/gradlew
-/grids/HELP.md
-/grids/settings.gradle.kts
 
 # Gradle temporary files
 **/*.lock

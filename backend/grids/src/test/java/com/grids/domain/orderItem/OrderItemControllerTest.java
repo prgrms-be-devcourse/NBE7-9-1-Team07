@@ -25,7 +25,7 @@ public class OrderItemControllerTest {
 
     @Test
         @DisplayName("주문 항목 취소")
-        void t1() throws Exception {
+        void orderCancelTest() throws Exception {
 
             ResultActions resultActions = mvc
                     .perform(
