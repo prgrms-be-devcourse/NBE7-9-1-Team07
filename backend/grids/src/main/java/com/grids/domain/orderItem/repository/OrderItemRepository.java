@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
-    //주문 항목 취소
-    void deleteAllByIdIn(List<Long> orderItemIds);
+    void deleteByIdIn(List<Long> orderItemIds);
 }

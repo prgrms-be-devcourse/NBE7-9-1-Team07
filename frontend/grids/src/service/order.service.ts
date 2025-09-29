@@ -1,7 +1,7 @@
 import { fetchApi } from "./client";
 import { CreateOrderRequest, CreateOrderResponse, OrderHistoryResponseDto } from "../type/order";
 
-const PATH = 'v1/orders';
+const PATH = '/orders';
 
 class OrderService {
     async getOrders(email: string): Promise<OrderHistoryResponseDto[]> {
@@ -11,23 +11,25 @@ class OrderService {
 
         const query = searchParams.toString();
 
-        const response = await fetchApi(`${PATH}${query}`);
+        const response = await fetchApi(`${PATH}?${query}`);
         
-        return response.data;
+        return response as OrderHistoryResponseDto[];
     }
 
     async createOrder(request: CreateOrderRequest): Promise<CreateOrderResponse> {
-        const { email, items } = request;
+        const { email, userAddress, userZipCode, orderItems } = request;
 
         const response = await fetchApi(`${PATH}`, {
             method: "POST",
             body: JSON.stringify({
                 email,
-                items,
+                userAddress,
+                userZipCode,
+                orderItems,
             })
         });
 
-        return response.data;
+        return response as CreateOrderResponse;
     }
 }
 

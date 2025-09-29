@@ -5,6 +5,7 @@ import com.grids.domain.orderItem.service.OrderItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +21,7 @@ public class OrderItemController {
     @DeleteMapping("/orderItems")
     @ResponseBody
     public CancelOrderItemResponse cancelOrderItems(
-            @RequestParam("id") List<Long> orderItemIds
+            @RequestBody List<Long> orderItemIds
     ) {
         System.out.println("Cancelling orderItemIds: " + orderItemIds);
         orderItemService.removeByOrderItemIds(orderItemIds);

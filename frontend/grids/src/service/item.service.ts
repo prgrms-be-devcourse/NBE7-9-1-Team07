@@ -1,13 +1,13 @@
 import { fetchApi } from "./client";
 import { ItemDto } from "../type/item";
 
-const PATH = 'v1/items';
+const PATH = '/items';
 
 class ItemService {
     async getItems(): Promise<ItemDto[]> {
         const response = await fetchApi(`${PATH}`);
         
-        return response.data;
+        return response as ItemDto[];
     }
 }
 

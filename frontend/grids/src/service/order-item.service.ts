@@ -1,20 +1,18 @@
 import { fetchApi } from "./client";
 import { CancelOrderItemRequest, CancelOrderItemResponse } from "../type/order";
 
-const PATH = 'v1/orderItems';
+const PATH = '/orderItems';
 
 class OrderItemService {
     async cancelOrderItem(request: CancelOrderItemRequest): Promise<CancelOrderItemResponse> {
         const { orderItemIds } = request;
 
-        const response = await fetchApi(`${PATH}`, {
+        const response = await fetchApi(PATH, {
             method: "DELETE",
-            body: JSON.stringify({
-                orderItemIds,
-            })
+            body: JSON.stringify(orderItemIds),
         });
 
-        return response.data;
+        return response as CancelOrderItemResponse;
     }
 }
 

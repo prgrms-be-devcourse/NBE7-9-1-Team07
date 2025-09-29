@@ -9,6 +9,7 @@ import com.grids.domain.order.entity.Order;
 import com.grids.domain.order.repository.OrderRepository;
 import com.grids.domain.orderItem.dto.OrderItemRequestDto;
 import com.grids.domain.orderItem.entity.OrderItem;
+import com.grids.domain.orderItem.service.OrderItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
+    private final OrderItemService orderItemService;
 
     // 상품 주문 서비스
     @Transactional
@@ -64,19 +66,6 @@ public class OrderService {
         List<OrderItem> newOrderItems = new ArrayList<>();
         long totalNewPrice = 0;
 
-        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
-            Item item = findItemById(itemRequest.getItemId());
-            long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
-            totalNewPrice += subTotalPrice;
-
-            OrderItem orderItem = OrderItem.builder()
-                    .item(item)
-                    .subTotalPrice(subTotalPrice)
-                    .quantity(itemRequest.getQuantity())
-                    .build();
-            newOrderItems.add(orderItem);
-        }
-
         Order newOrder = Order.builder()
                 .userEmail(requestDto.getEmail())
                 .userAddress(requestDto.getUserAddress())
@@ -84,12 +73,18 @@ public class OrderService {
                 .totalPrice(totalNewPrice)
                 .status("ORDERED")
                 .build();
+        newOrder = orderRepository.save(newOrder);
 
-        for (OrderItem orderItem : newOrderItems) {
-            newOrder.addOrderItem(orderItem);
+        for (OrderItemRequestDto itemRequest : requestDto.getOrderItems()) {
+            Item item = findItemById(itemRequest.getItemId());
+            long subTotalPrice = item.getPrice() * itemRequest.getQuantity();
+            totalNewPrice += subTotalPrice;
+
+            orderItemService.createOrderItem(newOrder, item, itemRequest.getQuantity());
         }
 
-        return orderRepository.save(newOrder);
+        newOrder.updateTotal(totalNewPrice);
+        return newOrder;
     }
 
     public Order mergeIntoExistingOrder(Order existingOrder, OrderRequestDto requestDto) {
