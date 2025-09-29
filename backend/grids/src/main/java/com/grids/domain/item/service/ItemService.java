@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,6 +29,10 @@ public class ItemService {
 
         // db에 반영된 최신 엔티티로 응답 Dto 생성
         return ItemInfoUpdateResponseDto.from(updatedItem);
+    }
+
+    public List<Item> findAll() {
+        return itemRepository.findAll();
     }
 
     @Transactional

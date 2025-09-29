@@ -5,8 +5,6 @@ import com.grids.domain.item.dto.ItemInfoUpdateRequestDto;
 import com.grids.domain.item.dto.ItemInfoUpdateResponseDto;
 import com.grids.domain.item.entity.Item;
 import com.grids.domain.item.repository.ItemRepository;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +17,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Stream;
 
 import static com.grids.domain.item.helper.ItemTestHelper.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -145,6 +145,4 @@ class ItemServiceTest {
         // ParameterizedTest는 각 케이스마다 독립적으로 실행되므로 항상 1번
         verify(itemRepository).save(any(Item.class));
     }
-
-
 }
