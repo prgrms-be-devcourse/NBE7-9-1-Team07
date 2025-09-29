@@ -16,3 +16,4 @@ export const QUANTITY_MINUS = "-";
 export const EMAIL_TAG = "email";
 export const ADDRESS_TAG = "address";
 export const ZIP_CODE_TAG = "zipCode";
+export const EMPTY_ITEM = "현재 판매 중인 상품이 없습니다.";

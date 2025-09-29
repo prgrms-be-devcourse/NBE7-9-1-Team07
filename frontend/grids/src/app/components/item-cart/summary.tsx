@@ -74,7 +74,9 @@ export default function Summary({ summaryItems, setSummaryItems }: SummaryProps)
         try {
             await orderService.createOrder({
                 email,
-                items: summaryItems.map((item) => ({
+                userAddress: address,
+                userZipCode: zipCode,
+                orderItems: summaryItems.map((item) => ({
                     itemId: item.id,
                     quantity: item.quantity,
                 })),

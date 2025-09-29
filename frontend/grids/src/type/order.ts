@@ -1,7 +1,7 @@
 export type OrderHistoryResponseDto = {
     orderId: number;
-    orderDate: string;
-    orderStatus: string;
+    orderName: string;
+    status: string;
     totalPrice: number;
     shippingDetails: ShippingDetail;
     orderItems: OrderItem[];
@@ -16,9 +16,9 @@ export type ShippingDetail = {
 export type OrderItem = {
     itemId: number;
     orderItemId: number;
-    itemName: string;
-    quantity: number;
-    price: number;
+    orderItemName: string;
+    orderQuantity: number;
+    orderPrice: number;
 }
 
 export type SelectableOrderItem = {
@@ -42,7 +42,9 @@ export type SelectableOrder = {
 
 export type CreateOrderRequest = {
     email: string;
-    items: {
+    userAddress: string;
+    userZipCode: string;
+    orderItems: {
         itemId: number;
         quantity: number;
     }[],

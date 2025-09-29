@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ItemDto, SummaryItem } from "../../../type/item";
-import { ADD_ITEM, WON } from "../../../constant";
+import { ADD_ITEM, EMPTY_ITEM, WON } from "../../../constant";
 import { itemService } from "../../../service";
 
 interface ItemListProps {
@@ -33,6 +33,14 @@ export default function ItemList({ setSummaryItems }: ItemListProps) {
             
             return [...prev, { ...item, quantity: 1 }];
         });
+    }
+
+    if (items.length == 0) {
+        return (
+            <div className="text-center text-gray-500 font-bold text-2xl">
+                {EMPTY_ITEM}
+            </div>
+        );
     }
 
     return (

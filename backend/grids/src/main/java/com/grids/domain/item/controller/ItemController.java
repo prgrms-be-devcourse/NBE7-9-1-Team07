@@ -1,8 +1,6 @@
 package com.grids.domain.item.controller;
 
-import com.grids.domain.item.dto.ItemInfoUpdateRequestDto;
-import com.grids.domain.item.dto.ItemInfoUpdateResponseDto;
-import com.grids.domain.item.dto.ItemListDto;
+import com.grids.domain.item.dto.*;
 import com.grids.domain.item.entity.Item;
 import com.grids.domain.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +21,7 @@ public class ItemController {
     @GetMapping
     @Transactional(readOnly = true)
     public List<ItemListDto> list() {
-        List<ItemListDto> itemList =  itemService.findAll().stream()
+        List<ItemListDto> itemList = itemService.findAll().stream()
                 .map(Item::toDto)
                 .toList();
 
@@ -36,4 +34,10 @@ public class ItemController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @PostMapping
+    public ResponseEntity<ItemCreateResponseDto> createItem(@RequestBody ItemCreateRequestDto request) {
+        Long createdId = itemService.createItem(request);
+        ItemCreateResponseDto result = new ItemCreateResponseDto(createdId);
+        return ResponseEntity.ok(result);
+    }
 }
