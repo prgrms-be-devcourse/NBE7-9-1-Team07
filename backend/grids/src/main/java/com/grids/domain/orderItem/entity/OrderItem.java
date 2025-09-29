@@ -33,4 +33,10 @@ public class OrderItem extends BaseEntity {
     private Long subTotalPrice;
     private int quantity;
 
+    public OrderItem(Long subTotalPrice, int quantity){
+        this.subTotalPrice = subTotalPrice;
+        this.quantity = quantity;
+    }
+
+
 }
