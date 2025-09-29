@@ -24,11 +24,18 @@ public class Item extends BaseEntity {
 
     private String image;
 
-    public Item (String name, Long price, String category, String image) {
+    public Item(String name, Long price, String category, String image) {
         this.name = name;
         this.price = price;
         this.category = category;
         this.image = image;
+    }
+
+    public void update(ItemInfoUpdateRequestDto requestDto) {
+        Optional.ofNullable(requestDto.getName()).ifPresent(name -> this.name = name);
+        Optional.ofNullable(requestDto.getPrice()).ifPresent(price -> this.price = price);
+        Optional.ofNullable(requestDto.getCategory()).ifPresent(category -> this.category = category);
+        Optional.ofNullable(requestDto.getImage()).ifPresent(image -> this.image = image);
     }
 
     public ItemListDto toDto(){
@@ -39,12 +46,6 @@ public class Item extends BaseEntity {
                 this.getPrice(),
                 this.getImage()
         );
-    }
-    public void update(ItemInfoUpdateRequestDto requestDto) {
-        Optional.ofNullable(requestDto.getName()).ifPresent(name -> this.name = name);
-        Optional.ofNullable(requestDto.getPrice()).ifPresent(price -> this.price = price);
-        Optional.ofNullable(requestDto.getCategory()).ifPresent(category -> this.category = category);
-        Optional.ofNullable(requestDto.getImage()).ifPresent(image -> this.image = image);
     }
 
 }
