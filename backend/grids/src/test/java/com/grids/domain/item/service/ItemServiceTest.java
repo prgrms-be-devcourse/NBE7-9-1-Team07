@@ -145,6 +145,4 @@ class ItemServiceTest {
         // ParameterizedTest는 각 케이스마다 독립적으로 실행되므로 항상 1번
         verify(itemRepository).save(any(Item.class));
     }
-
-
 }
